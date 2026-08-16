@@ -15,7 +15,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#ffffff"/><rect x="30" y="30" width="140" height="140" fill="none" stroke="#b68235"/><text x="100" y="118" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#15140f">S&amp;C</text></svg>
 </template>
 <style>
-  html, body { margin: 0; padding: 0; background: #ffffff; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
+  html, body { margin: 0; padding: 0; background: #ffffff; overscroll-behavior-y: auto; -webkit-text-size-adjust: 100%; }
   img { -webkit-user-drag: none; user-select: none; }
   a { color: #8f6529; }
   a:hover { color: #b68235; }
@@ -83,7 +83,7 @@
           <p style="margin:0;text-align:center;font-size:clamp(10px,2.6vw,13px);letter-spacing:.3em;text-transform:uppercase;color:#8a8375">in</p>
           <p style="margin:0;text-align:center;font-size:clamp(20px,5.6vw,32px);line-height:1.2;letter-spacing:.2em;text-transform:uppercase;text-wrap:balance">Wollongong</p>
           <p style="margin:0;text-align:center;font-size:clamp(12px,3.2vw,17px);line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:#3a382f;text-wrap:pretty">Formal invitation will be sent via preferred method chosen on the questionnaire above</p>
-          <a href="{{ calendarHref }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:48px;margin-top:4px;padding:12px clamp(22px,5vw,34px);border:1px solid #b68235;border-radius:999px;background:transparent;color:#15140f;text-decoration:none;font-family:Georgia, 'Times New Roman', serif;font-size:clamp(11px,3vw,13px);letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background 240ms ease,color 240ms ease" style-hover="background:#b68235;color:#ffffff">Add to calendar</a>
+          <a href="assets/wedding.ics" download="chris-and-steph-wedding.ics" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:48px;margin-top:4px;padding:12px clamp(22px,5vw,34px);border:1px solid #b68235;border-radius:999px;background:transparent;color:#15140f;text-decoration:none;font-family:Georgia, 'Times New Roman', serif;font-size:clamp(11px,3vw,13px);letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background 240ms ease,color 240ms ease" style-hover="background:#b68235;color:#ffffff">Add to calendar</a>
         </div>
 
         <div style="display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:520px">
@@ -97,12 +97,12 @@
           <div style="display:flex;align-items:center;justify-content:center;padding:clamp(14px,4vw,26px) 0">
             <div style="position:relative;z-index:1;flex:0 1 auto;aspect-ratio:4/5;background:#111111;padding:11px 11px 32px;box-sizing:border-box;box-shadow:0 14px 32px rgba(21,20,15,.24);width:{{ frameWidthCss }};transform:{{ frameLeftTransform }}">
               <div style="width:100%;height:100%;background:#f4f1ea">
-                <image-slot id="couple-photo-1" shape="rect" fit="cover" placeholder="Drop a photo — double-click to reposition" style="width:100%;height:100%"></image-slot>
+                <image-slot id="couple-photo-1" src="assets/couple-photo-1.webp" shape="rect" fit="cover" placeholder="Drop a photo — double-click to reposition" style="width:100%;height:100%"></image-slot>
               </div>
             </div>
             <div style="position:relative;z-index:2;flex:0 1 auto;aspect-ratio:4/5;background:#111111;padding:10px 10px 28px;box-sizing:border-box;box-shadow:0 16px 36px rgba(21,20,15,.28);width:{{ frameRightWidthCss }};margin-left:{{ frameGap }};transform:{{ frameRightTransform }}">
               <div style="width:100%;height:100%;background:#f4f1ea">
-                <image-slot id="couple-photo-2" shape="rect" fit="cover" placeholder="Drop a second photo — double-click to reposition" style="width:100%;height:100%"></image-slot>
+                <image-slot id="couple-photo-2" src="assets/couple-photo-2.webp" shape="rect" fit="cover" placeholder="Drop a second photo — double-click to reposition" style="width:100%;height:100%"></image-slot>
               </div>
             </div>
           </div>
@@ -260,12 +260,26 @@ class Component extends DCLogic {
     this.onKey = (e) => { if (!this.state.open && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); this.open(); } };
     window.addEventListener('keydown', this.onKey);
     this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+
+    this.scrollMemory = {};
+    this.onPop = (e) => {
+      const route = (e.state && e.state.route) || 'details';
+      this.restoreTo(route);
+    };
+    try { window.addEventListener('popstate', this.onPop); } catch (err) { /* noop */ }
   }
 
   componentWillUnmount() {
     clearTimeout(this.t1); clearTimeout(this.t2); clearInterval(this.tick);
     window.removeEventListener('keydown', this.onKey);
+    try { window.removeEventListener('popstate', this.onPop); } catch (err) { /* noop */ }
     document.body.style.overflow = '';
+  }
+
+  restoreTo(route) {
+    const y = (this.scrollMemory && this.scrollMemory[route]) || 0;
+    this.setState({ route, open: true, doorGone: true, error: '' });
+    requestAnimationFrame(() => { try { window.scrollTo(0, y); } catch (err) { /* noop */ } });
   }
 
   calendarUrl() {
@@ -329,6 +343,12 @@ class Component extends DCLogic {
   go = (route) => (e) => {
     if (e) e.preventDefault();
     document.body.style.overflow = '';
+    const from = this.state.route;
+    if (this.scrollMemory) this.scrollMemory[from] = window.scrollY || 0;
+    try {
+      if (!this.historyPrimed) { history.replaceState({ route: from }, ''); this.historyPrimed = true; }
+      history.pushState({ route }, '');
+    } catch (err) { /* history unavailable — in-page state still navigates */ }
     this.setState({ route, open: true, doorGone: true, error: '' });
     try { window.scrollTo(0, 0); } catch (err) { /* noop */ }
   };
@@ -421,7 +441,7 @@ class Component extends DCLogic {
       months: c.months, weeks: c.weeks, days: c.days,
       ctaLead: this.props.ctaLead ?? 'Please click below to answer a few questions',
       ctaLabel: this.props.ctaLabel ?? "I'm Below 👋",
-      calendarHref: this.calendarUrl(),
+
 
       frameWidthCss: 'min(' + (this.props.frameWidth ?? 230) + 'px, 44vw)',
       frameRightWidthCss: 'min(' + Math.round((this.props.frameWidth ?? 230) * ((this.props.frameRightScale ?? 80) / 100)) + 'px, 36vw)',
