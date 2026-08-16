@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italianno&family=Pinyon+Script&display=swap">
+<script src="./image-slot.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#ffffff"/><rect x="30" y="30" width="140" height="140" fill="none" stroke="#b68235"/><text x="100" y="118" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#15140f">S&amp;C</text></svg>
+</template>
+<style>
+  html, body { margin: 0; padding: 0; background: #ffffff; overscroll-behavior: none; -webkit-text-size-adjust: 100%; }
+  img { -webkit-user-drag: none; user-select: none; }
+  a { color: #8f6529; }
+  a:hover { color: #b68235; }
+  input, textarea, button { font: inherit; color: inherit; }
+  input:focus-visible, textarea:focus-visible, button:focus-visible, label:focus-within, a:focus-visible { outline: 1px solid #b68235; outline-offset: 4px; }
+  ::placeholder { color: #b0aa9c; font-style: italic; }
+  ::selection { background: rgba(182,130,53,.22); }
+  @keyframes stdBreathe { 0%, 100% { opacity: .3; } 50% { opacity: .85; } }
+</style>
+</helmet>
+<div style="width:100%;min-height:100dvh;background:#ffffff;font-family:Georgia, 'Times New Roman', serif">
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <section data-screen-label="Card" style="position:relative;width:100%;height:100dvh;min-height:400px;display:flex;align-items:center;justify-content:center;background:#ffffff">
+      <img src="assets/save-the-date.png" alt="Save the Date — 24.08.2028" style="display:block;width:100%;height:100%;object-fit:contain;padding:clamp(12px,4vw,48px) clamp(10px,4vw,40px);box-sizing:border-box" />
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isDetails }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Countdown" style="width:100%;min-height:100dvh;display:flex;flex-direction:column;background:#0a0a0a">
+
+      <div style="position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,2.4vh,22px);width:100%;min-height:100dvh;background:#ffffff;padding:clamp(10px,2.4vh,28px) clamp(8px,2.5vw,28px) max(18px, env(safe-area-inset-bottom));box-sizing:border-box">
+        <img src="assets/save-the-date.png" alt="Save the Date — 24.08.2028" style="display:block;width:100%;max-width:1040px;max-height:84dvh;height:auto;object-fit:contain" />
+        <span style="display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;opacity:{{ detailsHintOpacity }};transition:opacity 900ms ease">
+          <span style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#5b5749;text-align:center">Scroll down for details</span>
+          <span style="font-size:15px;line-height:1;color:#b68235;animation:stdBreathe 3s ease-in-out infinite">&#8595;</span>
+        </span>
+      </div>
+
+      <section style="flex:1 1 auto;width:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,3.4vh,34px);background:#0a0a0a;color:#f5ecdc;padding:clamp(30px,6vh,58px) clamp(16px,6vw,48px) max(34px, env(safe-area-inset-bottom))">
+
+        <p style="margin:0;font-size:clamp(12px,3.4vw,17px);letter-spacing:.22em;text-transform:uppercase;color:#e9dcc6;text-align:center;text-wrap:pretty">We hope you can join us in.....</p>
+
+        <div style="display:flex;align-items:flex-start;justify-content:center;gap:clamp(6px,3vw,26px);width:100%;max-width:640px">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1 1 0;min-width:0">
+            <span style="font-size:clamp(40px,13vw,104px);line-height:1;font-variant-numeric:tabular-nums;color:#f5ecdc">{{ months }}</span>
+            <span style="font-size:clamp(9px,2.6vw,14px);letter-spacing:.18em;text-transform:uppercase;color:#cbbda3">Months</span>
+          </div>
+          <span style="font-size:clamp(30px,9vw,76px);line-height:1.25;color:#8c8377">:</span>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1 1 0;min-width:0">
+            <span style="font-size:clamp(40px,13vw,104px);line-height:1;font-variant-numeric:tabular-nums;color:#f5ecdc">{{ weeks }}</span>
+            <span style="font-size:clamp(9px,2.6vw,14px);letter-spacing:.18em;text-transform:uppercase;color:#cbbda3">Weeks</span>
+          </div>
+          <span style="font-size:clamp(30px,9vw,76px);line-height:1.25;color:#8c8377">:</span>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1 1 0;min-width:0">
+            <span style="font-size:clamp(40px,13vw,104px);line-height:1;font-variant-numeric:tabular-nums;color:#f5ecdc">{{ days }}</span>
+            <span style="font-size:clamp(9px,2.6vw,14px);letter-spacing:.18em;text-transform:uppercase;color:#cbbda3">Days</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+          <p style="margin:0;font-size:clamp(12.5px,3.4vw,18px);letter-spacing:.06em;text-transform:uppercase;color:#f5ecdc;text-align:center;text-wrap:pretty">Formal invitation to follow.</p>
+          <p style="margin:0;font-size:clamp(12.5px,3.4vw,18px);letter-spacing:.06em;text-transform:uppercase;color:#f5ecdc;text-align:center;text-wrap:pretty">{{ ctaLead }}</p>
+        </div>
+
+        <a href="#questionnaire" onClick="{{ goQuestionnaire }}" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:48px;padding:12px clamp(24px,6vw,40px);border:1px solid #f5ecdc;border-radius:999px;color:#f5ecdc;text-decoration:none;font-size:clamp(14px,3.4vw,17px);letter-spacing:.06em;transition:background 260ms ease,color 260ms ease" style-hover="background:#f5ecdc;color:#0a0a0a">{{ ctaLabel }}</a>
+
+      </section>
+
+      <section style="width:100%;box-sizing:border-box;background:#ffffff;color:#15140f;display:flex;flex-direction:column;align-items:center;gap:clamp(24px,4.5vw,40px);padding:clamp(38px,8vw,76px) clamp(18px,6vw,56px)">
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:clamp(14px,3vw,22px);width:100%;max-width:760px">
+          <p style="margin:0;text-align:center;font-size:clamp(12px,3.2vw,17px);letter-spacing:.14em;text-transform:uppercase;color:#3a382f;text-wrap:balance">Our wedding will be held on</p>
+          <p style="margin:0;text-align:center;font-size:clamp(19px,5.4vw,34px);line-height:1.2;letter-spacing:.06em;text-transform:uppercase;text-wrap:balance">Thursday, 24<sup style="font-size:.5em;letter-spacing:.06em">th</sup> August, 2028</p>
+          <p style="margin:0;text-align:center;font-size:clamp(10px,2.6vw,13px);letter-spacing:.3em;text-transform:uppercase;color:#8a8375">in</p>
+          <p style="margin:0;text-align:center;font-size:clamp(20px,5.6vw,32px);line-height:1.2;letter-spacing:.2em;text-transform:uppercase;text-wrap:balance">Wollongong</p>
+          <p style="margin:0;text-align:center;font-size:clamp(12px,3.2vw,17px);line-height:1.5;letter-spacing:.08em;text-transform:uppercase;color:#3a382f;text-wrap:pretty">Formal invitation will be sent via preferred method chosen on the questionnaire above</p>
+          <a href="{{ calendarHref }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:48px;margin-top:4px;padding:12px clamp(22px,5vw,34px);border:1px solid #b68235;border-radius:999px;background:transparent;color:#15140f;text-decoration:none;font-family:Georgia, 'Times New Roman', serif;font-size:clamp(11px,3vw,13px);letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background 240ms ease,color 240ms ease" style-hover="background:#b68235;color:#ffffff">Add to calendar</a>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:520px">
+          <span style="flex:1 1 auto;height:1px;background:linear-gradient(to right, transparent, #15140f)"></span>
+          <span style="font-size:18px;line-height:1;color:#15140f">&#9829;</span>
+          <span style="flex:1 1 auto;height:1px;background:linear-gradient(to left, transparent, #15140f)"></span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:center;gap:clamp(28px,6vw,56px);width:100%;max-width:1000px">
+
+          <div style="display:flex;align-items:center;justify-content:center;padding:clamp(14px,4vw,26px) 0">
+            <div style="position:relative;z-index:1;flex:0 1 auto;aspect-ratio:4/5;background:#111111;padding:11px 11px 32px;box-sizing:border-box;box-shadow:0 14px 32px rgba(21,20,15,.24);width:{{ frameWidthCss }};transform:{{ frameLeftTransform }}">
+              <div style="width:100%;height:100%;background:#f4f1ea">
+                <image-slot id="couple-photo-1" shape="rect" fit="cover" placeholder="Drop a photo — double-click to reposition" style="width:100%;height:100%"></image-slot>
+              </div>
+            </div>
+            <div style="position:relative;z-index:2;flex:0 1 auto;aspect-ratio:4/5;background:#111111;padding:10px 10px 28px;box-sizing:border-box;box-shadow:0 16px 36px rgba(21,20,15,.28);width:{{ frameRightWidthCss }};margin-left:{{ frameGap }};transform:{{ frameRightTransform }}">
+              <div style="width:100%;height:100%;background:#f4f1ea">
+                <image-slot id="couple-photo-2" shape="rect" fit="cover" placeholder="Drop a second photo — double-click to reposition" style="width:100%;height:100%"></image-slot>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;align-items:center;gap:clamp(20px,4vw,34px);text-align:center">
+            <p style="margin:0;font-family:'Italianno','Edwardian Script ITC','Savoye LET','Apple Chancery',cursive;font-size:clamp(60px,16vw,120px);line-height:.9;color:#15140f">Questions?</p>
+            <p style="margin:0;font-size:clamp(12px,3.2vw,17px);line-height:1.6;letter-spacing:.1em;text-transform:uppercase;color:#3a382f">For any questions,<br />please contact us at:</p>
+            <a href="mailto:chrisandstephestrada@gmail.com" style="font-size:clamp(11.5px,3vw,16px);letter-spacing:.06em;text-transform:uppercase;color:#15140f;text-decoration:none;border-bottom:1px solid #b68235;padding-bottom:4px;word-break:break-word;transition:color 200ms ease" style-hover="color:#8f6529">chrisandstephestrada@gmail.com</a>
+          </div>
+
+        </div>
+
+      </section>
+
+      <section style="width:100%;box-sizing:border-box;background:#0a0a0a;color:#f5ecdc;display:flex;flex-direction:column;align-items:center;gap:6px;padding:clamp(24px,5vw,40px) clamp(18px,6vw,48px)">
+        <p style="margin:0;text-align:center;font-size:clamp(15px,4vw,22px);line-height:1.5;text-wrap:pretty">We can’t wait to celebrate with you all!</p>
+        <p style="margin:0;text-align:center;font-size:clamp(15px,4vw,22px);line-height:1.5;text-wrap:pretty">With lots of love from the future Mr. and Mrs. Estrada</p>
+        <p style="margin:0;text-align:center;font-size:clamp(11px,3vw,15px);letter-spacing:.34em;text-transform:uppercase;color:#cbbda3">xoxo</p>
+      </section>
+
+      <section style="position:relative;width:100%;background:#ffffff">
+        <img src="assets/cover.jpeg" alt="" style="display:block;width:100%;height:auto" />
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px">
+          <a href="#details" onClick="{{ goTop }}" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px clamp(22px,6vw,38px);border-radius:999px;background:#0a0a0a;color:#f5ecdc;text-decoration:none;font-size:clamp(12px,3.2vw,16px);letter-spacing:.22em;text-transform:uppercase;transition:background 240ms ease,color 240ms ease" style-hover="background:#f5ecdc;color:#0a0a0a">&#8593; Back to top</a>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isQuestionnaire }}" hint-placeholder-val="{{ false }}">
+    <div data-screen-label="Questionnaire" style="width:100%;min-height:100dvh;background:#faf7f1;color:#1f1e1b;padding:clamp(14px,4vw,56px) clamp(10px,3.5vw,40px) max(32px, env(safe-area-inset-bottom));box-sizing:border-box;display:flex;justify-content:center">
+      <div style="width:100%;max-width:720px;background:#ffffff;border:1px solid #e6dfd1;box-shadow:0 1px 2px rgba(31,30,27,.04), 0 18px 48px rgba(31,30,27,.06);padding:clamp(22px,5.5vw,58px) clamp(16px,5vw,58px) clamp(26px,6vw,54px);box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(20px,4vw,32px)">
+
+        <header style="display:flex;flex-direction:column;align-items:center;gap:12px">
+          <span style="font-size:clamp(8.5px,2.6vw,11px);letter-spacing:.38em;text-transform:uppercase;color:#8a8375;text-align:center">S &amp; C · 24.08.2028</span>
+          <h1 style="margin:0;text-align:center;font-family:'Italianno','Edwardian Script ITC','Savoye LET','Apple Chancery',cursive;font-weight:400;font-size:clamp(40px,12vw,88px);line-height:1;color:#15140f">Questionnaire</h1>
+          <span style="display:block;width:min(180px,50%);height:1px;background:linear-gradient(to right, transparent, #b68235, transparent)"></span>
+        </header>
+
+        <p style="margin:0;text-align:justify;hyphens:auto;font-size:clamp(14px,3.6vw,16px);line-height:1.62;color:#3a382f;text-wrap:pretty"><span style="letter-spacing:.06em;font-weight:700;color:#1f1e1b">Please note:</span> This questionnaire is for invited guests only. Due to venue capacity, we are only able to accommodate those named on the guest list. We kindly ask that additional guests or plus-ones are not added unless they have been specifically included in the invitation.</p>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:clamp(14px,3.6vw,22px) clamp(10px,4vw,26px);border-top:1px solid #ece4d5;border-bottom:1px solid #ece4d5">
+          <span style="font-size:clamp(8.5px,2.5vw,10.5px);letter-spacing:.3em;text-transform:uppercase;color:#8a8375;text-align:center">Please share the following by</span>
+          <p style="margin:0;text-align:center;font-size:clamp(16px,4.4vw,25px);line-height:1.25;letter-spacing:.02em;color:#15140f;text-wrap:balance">Thursday, 24<sup style="font-size:.55em;letter-spacing:.08em">th</sup> of February, 2028</p>
+        </div>
+
+        <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:clamp(22px,5vw,34px)">
+
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <label for="q-name" style="font-size:clamp(9.5px,2.7vw,11.5px);letter-spacing:.26em;text-transform:uppercase;color:#5b5749">Your full name *</label>
+              <input id="q-name" name="name" type="text" autoComplete="name" value="{{ name }}" onChange="{{ onName }}" style="width:100%;box-sizing:border-box;min-height:48px;padding:10px 2px;border:0;border-bottom:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:16px;transition:border-color 200ms ease" style-focus="border-bottom-color:#b68235" />
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <label for="q-mobile" style="font-size:clamp(9.5px,2.7vw,11.5px);letter-spacing:.26em;text-transform:uppercase;color:#5b5749">Mobile number *</label>
+              <input id="q-mobile" name="mobile" type="tel" autoComplete="tel" inputMode="tel" value="{{ mobile }}" onChange="{{ onMobile }}" style="width:100%;box-sizing:border-box;min-height:48px;padding:10px 2px;border:0;border-bottom:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:16px;transition:border-color 200ms ease" style-focus="border-bottom-color:#b68235" />
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <label for="q-email" style="font-size:clamp(9.5px,2.7vw,11.5px);letter-spacing:.26em;text-transform:uppercase;color:#5b5749">Email <span style="text-transform:none;letter-spacing:.04em;font-style:italic;color:#8a8375">(optional)</span></label>
+              <input id="q-email" name="email" type="email" autoComplete="email" value="{{ email }}" onChange="{{ onEmail }}" style="width:100%;box-sizing:border-box;min-height:48px;padding:10px 2px;border:0;border-bottom:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:16px;transition:border-color 200ms ease" style-focus="border-bottom-color:#b68235" />
+            </div>
+
+            <fieldset style="margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:10px;min-width:0">
+              <legend style="padding:0 0 12px;font-size:clamp(9.5px,2.7vw,11.5px);letter-spacing:.26em;text-transform:uppercase;line-height:1.7;color:#5b5749">How would you like to receive your invitation? *</legend>
+              <sc-for list="{{ deliveryOptions }}" as="opt" hint-placeholder-count="3">
+                <label style="position:relative;display:flex;align-items:center;gap:14px;min-height:56px;padding:14px 16px;background:{{ opt.bg }};border:1px solid {{ opt.border }};cursor:pointer;font-size:clamp(14.5px,3.9vw,17px);line-height:1.4;color:#1f1e1b;transition:background 220ms ease,border-color 220ms ease">
+                  <span style="flex:0 0 auto;width:11px;height:11px;border-radius:50%;border:1px solid #b68235;background:{{ opt.dot }};transition:background 220ms ease"></span>
+                  <input type="radio" name="delivery" value="{{ opt.label }}" checked="{{ opt.checked }}" onChange="{{ opt.onPick }}" style="position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer" />
+                  <span>{{ opt.label }}</span>
+                </label>
+              </sc-for>
+            </fieldset>
+
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <label for="q-address" style="font-size:clamp(9.5px,2.7vw,11.5px);letter-spacing:.26em;text-transform:uppercase;line-height:1.7;color:#5b5749">Postal address <span style="text-transform:none;letter-spacing:.04em;font-style:italic;color:#8a8375">— if you would like a printed invitation posted to you</span></label>
+              <textarea id="q-address" name="address" rows="3" autoComplete="street-address" value="{{ address }}" onChange="{{ onAddress }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:16px;line-height:1.5;resize:vertical;transition:border-color 200ms ease" style-focus="border-color:#b68235"></textarea>
+            </div>
+
+            <fieldset style="margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:10px;min-width:0">
+              <legend style="padding:0 0 12px;font-size:clamp(9.5px,2.7vw,11.5px);letter-spacing:.26em;text-transform:uppercase;line-height:1.7;color:#5b5749">If your ‘Save the Date’ came with a partner or spouse, how should the invitation be addressed?</legend>
+              <sc-for list="{{ addressingOptions }}" as="opt" hint-placeholder-count="3">
+                <label style="position:relative;display:flex;align-items:center;gap:14px;min-height:56px;padding:14px 16px;background:{{ opt.bg }};border:1px solid {{ opt.border }};cursor:pointer;font-size:clamp(14.5px,3.9vw,17px);line-height:1.4;color:#1f1e1b;transition:background 220ms ease,border-color 220ms ease">
+                  <span style="flex:0 0 auto;width:11px;height:11px;border-radius:50%;border:1px solid #b68235;background:{{ opt.dot }};transition:background 220ms ease"></span>
+                  <input type="radio" name="addressing" value="{{ opt.label }}" checked="{{ opt.checked }}" onChange="{{ opt.onPick }}" style="position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer" />
+                  <span>{{ opt.label }}</span>
+                </label>
+              </sc-for>
+            </fieldset>
+
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <label for="q-notes" style="font-size:clamp(9.5px,2.7vw,11.5px);letter-spacing:.26em;text-transform:uppercase;line-height:1.7;color:#5b5749">Anything you'd like us to know while we finish planning?</label>
+              <textarea id="q-notes" name="notes" rows="3" value="{{ notes }}" onChange="{{ onNotes }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:16px;line-height:1.5;resize:vertical;transition:border-color 200ms ease" style-focus="border-color:#b68235"></textarea>
+            </div>
+
+            <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+              <p role="alert" style="margin:0;font-size:15px;font-style:italic;color:#8a2b2b">{{ error }}</p>
+            </sc-if>
+
+            <button type="submit" disabled="{{ sending }}" style="width:100%;min-height:56px;padding:16px 18px;border:1px solid #2f5233;background:#2f5233;color:#f7f4ec;font-family:Georgia, 'Times New Roman', serif;font-size:clamp(11.5px,3.2vw,14px);letter-spacing:.3em;text-transform:uppercase;cursor:pointer;transition:background 240ms ease,color 240ms ease" style-hover="background:transparent;color:#2f5233">{{ submitLabel }}</button>
+
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ showThanks }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:18px;padding:clamp(28px,7vw,54px) clamp(14px,5vw,36px);border:1px solid #e6dfd1;text-align:center">
+            <span style="display:block;width:44px;height:1px;background:#b68235"></span>
+            <p style="margin:0;font-family:'Italianno','Edwardian Script ITC','Savoye LET','Apple Chancery',cursive;font-size:clamp(36px,10vw,58px);line-height:1;color:#15140f">Thank you</p>
+            <p style="margin:0;font-size:clamp(14.5px,3.8vw,17px);line-height:1.6;color:#3a382f;text-wrap:pretty">{{ thanksText }}</p>
+            <button onClick="{{ onAnother }}" style="min-height:48px;padding:12px 26px;border:1px solid #2f5233;background:transparent;color:#2f5233;font-family:Georgia, 'Times New Roman', serif;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;cursor:pointer;transition:background 240ms ease,color 240ms ease" style-hover="background:#2f5233;color:#f7f4ec">Another response</button>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:clamp(4px,2vw,14px)">
+          <img src="assets/monogram.png" alt="S &amp; C" style="display:block;width:clamp(60px,16vw,96px);height:auto" />
+          <a href="#details" onClick="{{ goDetails }}" style="font-size:clamp(10.5px,3vw,12.5px);letter-spacing:.28em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid #b68235;padding-bottom:4px;color:#5b5749;transition:color 200ms ease" style-hover="color:#2f5233">&lt; Go back</a>
+        </div>
+
+      </div>
+    </div>
+  </sc-if>
+
+  <div onClick="{{ onOpen }}" style="position:fixed;inset:0;z-index:20;pointer-events:auto;pointer-events:{{ doorEvents }};cursor:pointer;visibility:visible;visibility:{{ doorVisibility }}">
+
+    <div style="position:absolute;inset:0;clip-path:inset(0 50% 0 0);transform:translateX(0);transform:{{ leftT }};will-change:transform;transition:transform 2500ms cubic-bezier(.55,.03,.2,1)">
+      <img src="assets/cover.jpeg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#ffffff" />
+    </div>
+
+    <div style="position:absolute;inset:0;clip-path:inset(0 0 0 50%);transform:translateX(0);transform:{{ rightT }};will-change:transform;transition:transform 2500ms cubic-bezier(.55,.03,.2,1)">
+      <img src="assets/cover.jpeg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:#ffffff" />
+    </div>
+
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;weddingDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2028-08-24T00:00:00&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Countdown&quot;},&quot;ctaLead&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Please click below to answer a few questions&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Call to action&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;I'm Below 👋&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Call to action&quot;},&quot;frameWidth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:230,&quot;min&quot;:140,&quot;max&quot;:340,&quot;step&quot;:5,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Photo frames&quot;},&quot;frameRightScale&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:80,&quot;min&quot;:50,&quot;max&quot;:100,&quot;step&quot;:2,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Photo frames&quot;},&quot;frameOverlap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:-45,&quot;min&quot;:-110,&quot;max&quot;:40,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Photo frames&quot;},&quot;frameTiltLeft&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:-7,&quot;min&quot;:-20,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;°&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Photo frames&quot;},&quot;frameTiltRight&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:6,&quot;min&quot;:-20,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;°&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Photo frames&quot;},&quot;frameRightDrop&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:6,&quot;min&quot;:-20,&quot;max&quot;:20,&quot;step&quot;:1,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Photo frames&quot;},&quot;formEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://formspree.io/f/mdenldbr&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submissions&quot;},&quot;thanksText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Your answers are with us. The formal invitation will follow closer to the day.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submissions&quot;}}">
+const DELIVERY = ['Digital', 'Physical', 'Both, digital and physical'];
+const ADDRESSING = ['One joint invitation addressed to the both of us', 'Separate invitations (one for each person)', 'No preference'];
+const STORE_KEY = 'wedding-questionnaire-responses';
+const ROUTES = ['home', 'details', 'questionnaire'];
+
+class Component extends DCLogic {
+  state = {
+    route: 'home', open: false, hinted: false, now: Date.now(),
+    name: '', mobile: '', email: '', address: '', delivery: '', addressing: '', notes: '',
+    error: '', sending: false, done: false, last: null, doorGone: false
+  };
+
+  componentDidMount() {
+    this.setState({ route: 'home', open: false, doorGone: false });
+    this.t1 = setTimeout(this.open, 900);
+    this.t2 = setTimeout(() => { if (!this.state.open) this.open(); }, 3000);
+    this.onKey = (e) => { if (!this.state.open && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); this.open(); } };
+    window.addEventListener('keydown', this.onKey);
+    this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.t1); clearTimeout(this.t2); clearInterval(this.tick);
+    window.removeEventListener('keydown', this.onKey);
+    document.body.style.overflow = '';
+  }
+
+  calendarUrl() {
+    const start = new Date(this.props.weddingDate ?? '2028-08-24T00:00:00');
+    const pad = (n) => String(n).padStart(2, '0');
+    const day = start.getFullYear() + pad(start.getMonth() + 1) + pad(start.getDate());
+    const next = new Date(start.getTime() + 86400000);
+    const dayEnd = next.getFullYear() + pad(next.getMonth() + 1) + pad(next.getDate());
+    return 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent('Chris & Steph — Wedding')
+      + '&dates=' + day + '/' + dayEnd
+      + '&location=' + encodeURIComponent('Wollongong')
+      + '&details=' + encodeURIComponent('Save the date. Formal invitation to follow.');
+  }
+
+  addToCalendar = () => {
+    const start = new Date(this.props.weddingDate ?? '2028-08-24T00:00:00');
+    const pad = (n) => String(n).padStart(2, '0');
+    const day = start.getFullYear() + pad(start.getMonth() + 1) + pad(start.getDate());
+    const next = new Date(start.getTime() + 86400000);
+    const dayEnd = next.getFullYear() + pad(next.getMonth() + 1) + pad(next.getDate());
+    const ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Estrada Wedding//EN', 'BEGIN:VEVENT',
+      'UID:estrada-wedding-2028@savethedate', 'DTSTART;VALUE=DATE:' + day, 'DTEND;VALUE=DATE:' + dayEnd,
+      'SUMMARY:Chris & Steph — Wedding', 'LOCATION:Wollongong',
+      'DESCRIPTION:Save the date. Formal invitation to follow.', 'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+    const ua = navigator.userAgent || '';
+    const isApple = /iPad|iPhone|iPod|Macintosh/.test(ua) && !window.MSStream;
+
+    if (isApple) {
+      // iOS/macOS hand a text/calendar URL straight to the Calendar app
+      window.location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+      return;
+    }
+
+    const g = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+      + '&text=' + encodeURIComponent('Chris & Steph — Wedding')
+      + '&dates=' + day + '/' + dayEnd
+      + '&location=' + encodeURIComponent('Wollongong')
+      + '&details=' + encodeURIComponent('Save the date. Formal invitation to follow.');
+    const w = window.open(g, '_blank', 'noopener');
+
+    if (!w) {
+      const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+      const a = document.createElement('a');
+      a.href = url; a.download = 'chris-and-steph-wedding.ics';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+    }
+  };
+
+  open = () => {
+    if (this.state.open) return;
+    clearTimeout(this.t1); clearTimeout(this.t2);
+    this.setState({ route: 'details' });
+    requestAnimationFrame(() => requestAnimationFrame(() => this.setState({ open: true })));
+    setTimeout(() => { document.body.style.overflow = ''; this.setState({ doorGone: true }); }, 1100);
+  };
+
+  go = (route) => (e) => {
+    if (e) e.preventDefault();
+    document.body.style.overflow = '';
+    this.setState({ route, open: true, doorGone: true, error: '' });
+    try { window.scrollTo(0, 0); } catch (err) { /* noop */ }
+  };
+
+  set = (k) => (e) => this.setState({ [k]: e.target.value, error: '' });
+
+  buildOptions(list, selectedKey) {
+    return list.map((label) => {
+      const checked = this.state[selectedKey] === label;
+      return {
+        label, checked,
+        bg: checked ? '#f7f2e7' : '#ffffff',
+        border: checked ? '#b68235' : '#e6dfd1',
+        dot: checked ? '#b68235' : 'transparent',
+        onPick: () => this.setState({ [selectedKey]: label, error: '' })
+      };
+    });
+  }
+
+  countdown() {
+    const target = new Date(this.props.weddingDate ?? '2028-08-24T00:00:00');
+    const now = new Date(this.state.now);
+    if (isNaN(target) || now >= target) return { months: 0, weeks: 0, days: 0 };
+    let months = (target.getFullYear() - now.getFullYear()) * 12 + (target.getMonth() - now.getMonth());
+    const anchor = new Date(now.getTime());
+    anchor.setMonth(anchor.getMonth() + months);
+    if (anchor > target) { months -= 1; anchor.setTime(now.getTime()); anchor.setMonth(anchor.getMonth() + months); }
+    const totalDays = Math.floor((target - anchor) / 86400000);
+    return { months, weeks: Math.floor(totalDays / 7), days: totalDays % 7 };
+  }
+
+  onSubmit = async (e) => {
+    e.preventDefault();
+    const s = this.state;
+    const focus = (id) => { const el = document.getElementById(id); if (el) el.focus({ preventScroll: false }); };
+    if (!s.name.trim()) { this.setState({ error: 'Please add your full name.' }); return focus('q-name'); }
+    if (!s.mobile.trim()) { this.setState({ error: 'Please add your mobile number.' }); return focus('q-mobile'); }
+    if (!s.delivery) return this.setState({ error: 'Please choose how you would like to receive your invitation.' });
+    if (s.delivery !== 'Digital' && !s.address.trim()) { this.setState({ error: 'Please add a postal address for the printed invitation.' }); return focus('q-address'); }
+
+    const payload = {
+      name: s.name.trim(), mobile: s.mobile.trim(), email: s.email.trim(),
+      delivery: s.delivery, address: s.address.trim(), addressing: s.addressing,
+      notes: s.notes.trim(), submittedAt: new Date().toISOString(),
+      _subject: 'Save the Date questionnaire — ' + (s.name.trim() || 'guest')
+    };
+
+    this.setState({ sending: true, error: '' });
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
+      saved.push(payload);
+      localStorage.setItem(STORE_KEY, JSON.stringify(saved));
+    } catch (err) { /* storage unavailable — the endpoint is the record */ }
+
+    const endpoint = this.props.formEndpoint ?? 'https://formspree.io/f/mdenldbr';
+    if (endpoint) {
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('bad status');
+      } catch (err) {
+        this.setState({ sending: false, error: 'We could not send that just now — please check your connection and try again.' });
+        return;
+      }
+    }
+
+    this.setState({ sending: false, done: true });
+    window.scrollTo(0, 0);
+  };
+
+  renderVals() {
+    const s = this.state;
+    const c = this.countdown();
+    return {
+      isHome: s.route === 'home',
+      isDetails: s.route === 'details',
+      isQuestionnaire: s.route === 'questionnaire',
+      goHome: this.go('home'), goDetails: this.go('details'), goQuestionnaire: this.go('questionnaire'),
+      goTop: (e) => {
+        if (e) e.preventDefault();
+        this.setState({ route: 'details' });
+        try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (err) { /* noop */ }
+        setTimeout(() => { if (window.scrollY > 0) window.scrollTo(0, 0); }, 500);
+      },
+
+      months: c.months, weeks: c.weeks, days: c.days,
+      ctaLead: this.props.ctaLead ?? 'Please click below to answer a few questions',
+      ctaLabel: this.props.ctaLabel ?? "I'm Below 👋",
+      calendarHref: this.calendarUrl(),
+
+      frameWidthCss: 'min(' + (this.props.frameWidth ?? 230) + 'px, 44vw)',
+      frameRightWidthCss: 'min(' + Math.round((this.props.frameWidth ?? 230) * ((this.props.frameRightScale ?? 80) / 100)) + 'px, 36vw)',
+      frameGap: (this.props.frameOverlap ?? -45) + 'px',
+      frameLeftTransform: 'rotate(' + (this.props.frameTiltLeft ?? -7) + 'deg)',
+      frameRightTransform: 'rotate(' + (this.props.frameTiltRight ?? 6) + 'deg) translateY(' + (this.props.frameRightDrop ?? 6) + '%)',
+
+
+      leftT: s.open ? 'translateX(-101%)' : 'translateX(0)',
+      rightT: s.open ? 'translateX(101%)' : 'translateX(0)',
+      hintOpacity: s.open || !s.hinted ? 0 : 1,
+      detailsHintOpacity: s.doorGone ? 1 : 0,
+      doorEvents: s.open ? 'none' : 'auto',
+      doorVisibility: s.doorGone ? 'hidden' : 'visible',
+      onOpen: this.open,
+
+      name: s.name, mobile: s.mobile, email: s.email, address: s.address, notes: s.notes,
+      onName: this.set('name'), onMobile: this.set('mobile'), onEmail: this.set('email'),
+      onAddress: this.set('address'), onNotes: this.set('notes'),
+      deliveryOptions: this.buildOptions(DELIVERY, 'delivery'),
+      addressingOptions: this.buildOptions(ADDRESSING, 'addressing'),
+      error: s.error,
+      sending: s.sending,
+      submitLabel: s.sending ? 'Sending…' : 'Submit',
+      showForm: !s.done,
+      showThanks: s.done,
+      thanksText: this.props.thanksText ?? 'Your answers are with us. The formal invitation will follow closer to the day.',
+      onSubmit: this.onSubmit,
+      onAnother: () => this.setState({ name: '', mobile: '', email: '', address: '', delivery: '', addressing: '', notes: '', done: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
