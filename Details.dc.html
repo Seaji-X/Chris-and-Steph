@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#0a0a0a"/><text x="100" y="112" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#f5ecdc">S&amp;C</text></svg>
+</template>
+<style>
+  html, body { margin: 0; padding: 0; background: #0a0a0a; overscroll-behavior: none; }
+  img { -webkit-user-drag: none; user-select: none; }
+  a { color: #f5ecdc; }
+  a:hover { color: #ffffff; }
+</style>
+</helmet>
+<div style="width:100%;min-height:100dvh;display:flex;flex-direction:column;background:#0a0a0a;font-family:Georgia, 'Times New Roman', serif">
+
+  <a href="Save the Date.dc.html" style="display:flex;align-items:center;justify-content:center;width:100%;background:#ffffff;padding:clamp(24px,6vh,64px) clamp(16px,5vw,48px);box-sizing:border-box;text-decoration:none;-webkit-tap-highlight-color:transparent">
+    <img src="assets/save-the-date.png" alt="Save the Date — 24.08.2028" style="display:block;width:100%;max-width:860px;height:auto" />
+  </a>
+
+  <section data-screen-label="Countdown" style="flex:1 1 auto;width:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(20px,3.4vh,34px);background:#0a0a0a;color:#f5ecdc;padding:clamp(34px,6vh,58px) clamp(20px,6vw,48px) max(clamp(38px,6vh,62px), env(safe-area-inset-bottom))">
+
+    <p style="margin:0;font-size:clamp(13px,3.4vw,17px);letter-spacing:.22em;text-transform:uppercase;color:#e9dcc6;text-align:center;text-wrap:pretty">We hope you can join us in.....</p>
+
+    <div style="display:flex;align-items:flex-start;justify-content:center;gap:clamp(10px,3.5vw,26px)">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:clamp(58px,18vw,120px)">
+        <span style="font-size:clamp(46px,14vw,104px);line-height:1;font-variant-numeric:tabular-nums;color:#f5ecdc">{{ months }}</span>
+        <span style="font-size:clamp(10px,2.8vw,14px);letter-spacing:.2em;text-transform:uppercase;color:#cbbda3">Months</span>
+      </div>
+      <span style="font-size:clamp(34px,10vw,76px);line-height:1.25;color:#8c8377">:</span>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:clamp(58px,18vw,120px)">
+        <span style="font-size:clamp(46px,14vw,104px);line-height:1;font-variant-numeric:tabular-nums;color:#f5ecdc">{{ weeks }}</span>
+        <span style="font-size:clamp(10px,2.8vw,14px);letter-spacing:.2em;text-transform:uppercase;color:#cbbda3">Weeks</span>
+      </div>
+      <span style="font-size:clamp(34px,10vw,76px);line-height:1.25;color:#8c8377">:</span>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;min-width:clamp(58px,18vw,120px)">
+        <span style="font-size:clamp(46px,14vw,104px);line-height:1;font-variant-numeric:tabular-nums;color:#f5ecdc">{{ days }}</span>
+        <span style="font-size:clamp(10px,2.8vw,14px);letter-spacing:.2em;text-transform:uppercase;color:#cbbda3">Days</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <p style="margin:0;font-size:clamp(13px,3.4vw,18px);letter-spacing:.08em;text-transform:uppercase;color:#f5ecdc;text-align:center;text-wrap:pretty">Formal invitation to follow.</p>
+      <p style="margin:0;font-size:clamp(13px,3.4vw,18px);letter-spacing:.08em;text-transform:uppercase;color:#f5ecdc;text-align:center;text-wrap:pretty">{{ ctaLead }}</p>
+    </div>
+
+    <a href="{{ ctaHref }}" style="display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:48px;padding:12px clamp(24px,6vw,40px);border:1px solid #f5ecdc;border-radius:999px;color:#f5ecdc;text-decoration:none;font-size:clamp(14px,3.4vw,17px);letter-spacing:.06em;transition:background 260ms ease,color 260ms ease" style-hover="background:#f5ecdc;color:#0a0a0a">{{ ctaLabel }}</a>
+
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;weddingDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2028-08-24T00:00:00&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Countdown&quot;},&quot;ctaLead&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Please click below to answer a few questions&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Call to action&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;I'm Below 👋&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Call to action&quot;},&quot;ctaHref&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Questionnaire.dc.html&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Call to action&quot;}}">
+class Component extends DCLogic {
+  state = { now: Date.now() };
+
+  componentDidMount() { this.tick = setInterval(() => this.setState({ now: Date.now() }), 1000); }
+  componentWillUnmount() { clearInterval(this.tick); }
+
+  countdown() {
+    const target = new Date(this.props.weddingDate ?? '2028-08-24T00:00:00');
+    const now = new Date(this.state.now);
+    if (isNaN(target) || now >= target) return { months: 0, weeks: 0, days: 0, hours: 0, minutes: 0, seconds: 0, past: true };
+
+    let months = (target.getFullYear() - now.getFullYear()) * 12 + (target.getMonth() - now.getMonth());
+    const anchor = new Date(now.getTime());
+    anchor.setMonth(anchor.getMonth() + months);
+    if (anchor > target) { months -= 1; anchor.setMonth(now.getMonth() + months, now.getDate()); anchor.setFullYear(now.getFullYear() + Math.floor((now.getMonth() + months) / 12)); }
+
+    let rest = target - anchor;
+    const days = Math.floor(rest / 86400000);
+    rest -= days * 86400000;
+    return {
+      months,
+      weeks: Math.floor(days / 7),
+      days: days % 7,
+      hours: Math.floor(rest / 3600000),
+      minutes: Math.floor(rest / 60000) % 60,
+      seconds: Math.floor(rest / 1000) % 60,
+      past: false
+    };
+  }
+
+  renderVals() {
+    const c = this.countdown();
+    return {
+      months: c.months, weeks: c.weeks, days: c.days,
+      clock: String(c.hours).padStart(2, '0') + ':' + String(c.minutes).padStart(2, '0') + ':' + String(c.seconds).padStart(2, '0'),
+      ctaLead: this.props.ctaLead ?? 'Please click below to answer a few questions',
+      ctaLabel: this.props.ctaLabel ?? "I'm Below 👋",
+      ctaHref: this.props.ctaHref ?? 'Questionnaire.dc.html'
+    };
+  }
+}
+</script>
+</body>
+</html>

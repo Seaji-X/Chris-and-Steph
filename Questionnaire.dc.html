@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italianno&family=Pinyon+Script&display=swap">
+<template id="__bundler_thumbnail" data-bg-color="#faf7f1">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#faf7f1"/><rect x="26" y="26" width="148" height="148" fill="none" stroke="#b68235"/><text x="100" y="118" text-anchor="middle" font-family="Georgia,serif" font-size="42" fill="#1f1e1b">Q</text></svg>
+</template>
+<style>
+  html, body { margin: 0; padding: 0; background: #faf7f1; }
+  a { color: #2f5233; }
+  a:hover { color: #24401f; }
+  input, textarea, button { font: inherit; color: inherit; }
+  input:focus-visible, textarea:focus-visible, button:focus-visible, label:focus-within { outline: 1px solid #b68235; outline-offset: 4px; }
+  ::placeholder { color: #b0aa9c; font-style: italic; }
+  ::selection { background: rgba(182,130,53,.22); }
+</style>
+</helmet>
+<div style="width:100%;min-height:100dvh;background:#faf7f1;color:#1f1e1b;font-family:Georgia, 'Times New Roman', serif;padding:clamp(20px,5vw,56px) clamp(14px,4vw,40px) max(40px, env(safe-area-inset-bottom));box-sizing:border-box;display:flex;justify-content:center">
+  <div style="width:100%;max-width:720px;background:#ffffff;border:1px solid #e6dfd1;box-shadow:0 1px 2px rgba(31,30,27,.04), 0 18px 48px rgba(31,30,27,.06);padding:clamp(26px,6vw,58px) clamp(20px,5.5vw,58px) clamp(30px,6vw,54px);box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(22px,4vw,32px)">
+
+    <header style="display:flex;flex-direction:column;align-items:center;gap:14px">
+      <span style="font-size:clamp(9px,2.6vw,11px);letter-spacing:.42em;text-transform:uppercase;color:#8a8375">S &amp; C · 24.08.2028</span>
+      <h1 style="margin:0;text-align:center;font-family:'Italianno','Edwardian Script ITC','Savoye LET','Apple Chancery',cursive;font-weight:400;font-size:clamp(46px,13vw,88px);line-height:1;color:#15140f">Questionnaire</h1>
+      <span style="display:block;width:min(180px,50%);height:1px;background:linear-gradient(to right, transparent, #b68235, transparent)"></span>
+    </header>
+
+    <p style="margin:0;text-align:justify;hyphens:auto;font-size:clamp(14.5px,3.6vw,16px);line-height:1.62;color:#3a382f;text-wrap:pretty"><span style="letter-spacing:.06em;font-weight:700;color:#1f1e1b">Please note:</span> This questionnaire is for invited guests only. Due to venue capacity, we are only able to accommodate those named on the guest list. We kindly ask that additional guests or plus-ones are not added unless they have been specifically included in the invitation.</p>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;padding:clamp(16px,3.6vw,22px) clamp(14px,4vw,26px);border-top:1px solid #ece4d5;border-bottom:1px solid #ece4d5">
+      <span style="font-size:clamp(9px,2.5vw,10.5px);letter-spacing:.34em;text-transform:uppercase;color:#8a8375">Please share the following by</span>
+      <p style="margin:0;text-align:center;font-size:clamp(17px,4.6vw,25px);line-height:1.25;letter-spacing:.02em;color:#15140f;text-wrap:balance">Thursday, 24<sup style="font-size:.55em;letter-spacing:.08em">th</sup> of February, 2028</p>
+    </div>
+
+    <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:clamp(24px,5vw,34px)">
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <label for="q-name" style="font-size:clamp(10px,2.7vw,11.5px);letter-spacing:.28em;text-transform:uppercase;color:#5b5749">Your full name *</label>
+          <input id="q-name" name="name" type="text" required="{{ true }}" autoComplete="name" value="{{ name }}" onChange="{{ onName }}" style="width:100%;box-sizing:border-box;min-height:48px;padding:10px 2px;border:0;border-bottom:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:17px;transition:border-color 200ms ease" style-focus="border-bottom-color:#b68235" />
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <label for="q-mobile" style="font-size:clamp(10px,2.7vw,11.5px);letter-spacing:.28em;text-transform:uppercase;color:#5b5749">Mobile number *</label>
+          <input id="q-mobile" name="mobile" type="tel" required="{{ true }}" autoComplete="tel" inputMode="tel" value="{{ mobile }}" onChange="{{ onMobile }}" style="width:100%;box-sizing:border-box;min-height:48px;padding:10px 2px;border:0;border-bottom:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:17px;transition:border-color 200ms ease" style-focus="border-bottom-color:#b68235" />
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <label for="q-email" style="font-size:clamp(10px,2.7vw,11.5px);letter-spacing:.28em;text-transform:uppercase;color:#5b5749">Email <span style="text-transform:none;letter-spacing:.04em;font-style:italic;color:#8a8375">(optional)</span></label>
+          <input id="q-email" name="email" type="email" autoComplete="email" value="{{ email }}" onChange="{{ onEmail }}" style="width:100%;box-sizing:border-box;min-height:48px;padding:10px 2px;border:0;border-bottom:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:17px;transition:border-color 200ms ease" style-focus="border-bottom-color:#b68235" />
+        </div>
+
+        <fieldset style="margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:10px">
+          <legend style="padding:0 0 12px;font-size:clamp(10px,2.7vw,11.5px);letter-spacing:.28em;text-transform:uppercase;color:#5b5749">How would you like to receive your invitation? *</legend>
+          <sc-for list="{{ deliveryOptions }}" as="opt" hint-placeholder-count="3">
+            <label style="position:relative;display:flex;align-items:center;gap:14px;min-height:56px;padding:14px 18px;background:{{ opt.bg }};border:1px solid {{ opt.border }};cursor:pointer;font-size:clamp(15px,3.9vw,17px);color:#1f1e1b;transition:background 220ms ease,border-color 220ms ease">
+              <span style="flex:0 0 auto;width:11px;height:11px;border-radius:50%;border:1px solid #b68235;background:{{ opt.dot }};transition:background 220ms ease"></span>
+              <input type="radio" name="delivery" value="{{ opt.label }}" checked="{{ opt.checked }}" onChange="{{ opt.onPick }}" style="position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer" />
+              <span>{{ opt.label }}</span>
+            </label>
+          </sc-for>
+        </fieldset>
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <label for="q-address" style="font-size:clamp(10px,2.7vw,11.5px);letter-spacing:.28em;text-transform:uppercase;line-height:1.7;color:#5b5749">Postal address <span style="text-transform:none;letter-spacing:.04em;font-style:italic;color:#8a8375">— if you would like a printed invitation posted to you</span></label>
+          <textarea id="q-address" name="address" rows="3" autoComplete="street-address" value="{{ address }}" onChange="{{ onAddress }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:17px;line-height:1.5;resize:vertical;transition:border-color 200ms ease" style-focus="border-color:#b68235"></textarea>
+        </div>
+
+        <fieldset style="margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:10px">
+          <legend style="padding:0 0 12px;font-size:clamp(10px,2.7vw,11.5px);letter-spacing:.28em;text-transform:uppercase;line-height:1.7;color:#5b5749">If your ‘Save the Date’ came with a partner or spouse, how should the invitation be addressed?</legend>
+          <sc-for list="{{ addressingOptions }}" as="opt" hint-placeholder-count="3">
+            <label style="position:relative;display:flex;align-items:center;gap:14px;min-height:56px;padding:14px 18px;background:{{ opt.bg }};border:1px solid {{ opt.border }};cursor:pointer;font-size:clamp(15px,3.9vw,17px);color:#1f1e1b;transition:background 220ms ease,border-color 220ms ease">
+              <span style="flex:0 0 auto;width:11px;height:11px;border-radius:50%;border:1px solid #b68235;background:{{ opt.dot }};transition:background 220ms ease"></span>
+              <input type="radio" name="addressing" value="{{ opt.label }}" checked="{{ opt.checked }}" onChange="{{ opt.onPick }}" style="position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer" />
+              <span>{{ opt.label }}</span>
+            </label>
+          </sc-for>
+        </fieldset>
+
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <label for="q-notes" style="font-size:clamp(10px,2.7vw,11.5px);letter-spacing:.28em;text-transform:uppercase;line-height:1.7;color:#5b5749">Anything you'd like us to know while we finish planning?</label>
+          <textarea id="q-notes" name="notes" rows="3" value="{{ notes }}" onChange="{{ onNotes }}" style="width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #cfc7b5;background:transparent;font-family:Georgia, 'Times New Roman', serif;font-size:17px;line-height:1.5;resize:vertical;transition:border-color 200ms ease" style-focus="border-color:#b68235"></textarea>
+        </div>
+
+        <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+          <p role="alert" style="margin:0;font-size:15px;font-style:italic;color:#8a2b2b">{{ error }}</p>
+        </sc-if>
+
+        <button type="submit" disabled="{{ sending }}" style="width:100%;min-height:56px;padding:16px 22px;border:1px solid #2f5233;background:#2f5233;color:#f7f4ec;font-family:Georgia, 'Times New Roman', serif;font-size:clamp(12px,3.2vw,14px);letter-spacing:.34em;text-transform:uppercase;cursor:pointer;transition:background 240ms ease,color 240ms ease" style-hover="background:transparent;color:#2f5233">{{ submitLabel }}</button>
+
+      </form>
+    </sc-if>
+
+    <sc-if value="{{ showThanks }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:18px;padding:clamp(30px,7vw,54px) clamp(18px,5vw,36px);border:1px solid #e6dfd1;text-align:center">
+        <span style="display:block;width:44px;height:1px;background:#b68235"></span>
+        <p style="margin:0;font-family:'Italianno','Edwardian Script ITC','Savoye LET','Apple Chancery',cursive;font-size:clamp(38px,10vw,58px);line-height:1;color:#15140f">Thank you</p>
+        <p style="margin:0;font-size:clamp(15px,3.8vw,17px);line-height:1.6;color:#3a382f;text-wrap:pretty">{{ thanksText }}</p>
+        <button onClick="{{ onAnother }}" style="min-height:48px;padding:12px 28px;border:1px solid #2f5233;background:transparent;color:#2f5233;font-family:Georgia, 'Times New Roman', serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;transition:background 240ms ease,color 240ms ease" style-hover="background:#2f5233;color:#f7f4ec">Another response</button>
+      </div>
+    </sc-if>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:clamp(6px,2vw,14px)">
+      <img src="assets/monogram.png" alt="S &amp; C" style="display:block;width:clamp(64px,16vw,96px);height:auto" />
+      <a href="Details.dc.html" style="font-size:clamp(11px,3vw,12.5px);letter-spacing:.3em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid #b68235;padding-bottom:4px;color:#5b5749;transition:color 200ms ease" style-hover="color:#2f5233">&lt; Go back</a>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;formEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://formspree.io/f/mdenldbr&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submissions&quot;},&quot;thanksText&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Your answers are with us. The formal invitation will follow closer to the day.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submissions&quot;}}">
+const DELIVERY = ['Digital', 'Physical', 'Both, digital and physical'];
+const ADDRESSING = ['One joint invitation addressed to the both of us', 'Separate invitations (one for each person)', 'No preference'];
+const STORE_KEY = 'wedding-questionnaire-responses';
+
+class Component extends DCLogic {
+  state = { name: '', mobile: '', email: '', address: '', delivery: '', addressing: '', notes: '', error: '', sending: false, done: false };
+
+  set = (k) => (e) => this.setState({ [k]: e.target.value, error: '' });
+
+  buildOptions(list, selectedKey) {
+    return list.map((label) => {
+      const checked = this.state[selectedKey] === label;
+      return {
+        label, checked,
+        bg: checked ? '#f7f2e7' : '#ffffff',
+        border: checked ? '#b68235' : '#e6dfd1',
+        dot: checked ? '#b68235' : 'transparent',
+        onPick: () => this.setState({ [selectedKey]: label, error: '' })
+      };
+    });
+  }
+
+  onSubmit = async (e) => {
+    e.preventDefault();
+    const s = this.state;
+    if (!s.name.trim() || !s.mobile.trim()) return this.setState({ error: 'Please add your name and mobile number.' });
+    if (!s.delivery) return this.setState({ error: 'Please choose how you would like to receive your invitation.' });
+    if (s.delivery !== 'Digital' && !s.address.trim()) return this.setState({ error: 'Please add a postal address for the printed invitation.' });
+
+    const payload = {
+      name: s.name.trim(), mobile: s.mobile.trim(), email: s.email.trim(),
+      delivery: s.delivery, address: s.address.trim(), addressing: s.addressing,
+      notes: s.notes.trim(), submittedAt: new Date().toISOString(),
+      _subject: 'Save the Date questionnaire — ' + (s.name.trim() || 'guest')
+    };
+
+    this.setState({ sending: true, error: '' });
+
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
+      saved.push(payload);
+      localStorage.setItem(STORE_KEY, JSON.stringify(saved));
+    } catch (err) { /* storage unavailable — the endpoint is the real record */ }
+
+    const endpoint = this.props.formEndpoint ?? 'https://formspree.io/f/mdenldbr';
+    if (endpoint) {
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('bad status');
+      } catch (err) {
+        this.setState({ sending: false, error: 'We could not send that just now — please check your connection and try again.' });
+        return;
+      }
+    }
+
+    this.setState({ sending: false, done: true });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  renderVals() {
+    const s = this.state;
+    return {
+      name: s.name, mobile: s.mobile, email: s.email, address: s.address, notes: s.notes,
+      onName: this.set('name'), onMobile: this.set('mobile'), onEmail: this.set('email'),
+      onAddress: this.set('address'), onNotes: this.set('notes'),
+      deliveryOptions: this.buildOptions(DELIVERY, 'delivery'),
+      addressingOptions: this.buildOptions(ADDRESSING, 'addressing'),
+      error: s.error,
+      sending: s.sending,
+      submitLabel: s.sending ? 'Sending…' : 'Submit',
+      showForm: !s.done,
+      showThanks: s.done,
+      thanksText: this.props.thanksText ?? 'Your answers are with us. The formal invitation will follow closer to the day.',
+      onSubmit: this.onSubmit,
+      onAnother: () => this.setState({ name: '', mobile: '', email: '', address: '', delivery: '', addressing: '', notes: '', done: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
